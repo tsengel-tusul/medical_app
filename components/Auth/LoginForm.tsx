@@ -33,7 +33,7 @@ export default function LoginForm() {
       console.log("SignIn response:", loginData);
       if (loginData?.error) {
         setIsLoading(false);
-        toast.error("Sign-in error: Check your credentials");
+        toast.error("Sign-in error: Check your credentials!");
         setShowNotification(true);
       } else {
         // Sign-in was successful
