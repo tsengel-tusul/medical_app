@@ -1,8 +1,9 @@
 import React from "react";
-import SearchBar from "./SearchBar";
+//import SearchBar from "./SearchBar";
 import TransitionalText from "./TransitionalText";
 import { Pill } from "lucide-react";
 import Image from "next/image";
+import { CommandMenu } from "../command-menu";
 
 const Hero = () => {
   return (
@@ -25,7 +26,9 @@ const Hero = () => {
                   үзүүлэх болно.
                 </p>
                 {/* SEARCH BAR HERE*/}
-                <SearchBar />
+                <div className="w-full flex-1  md:flex-none">
+                  <CommandMenu />
+                </div>
                 {/* CTA BTNS*/}
 
                 <ul className="flex flex-wrap items-center mt-6">

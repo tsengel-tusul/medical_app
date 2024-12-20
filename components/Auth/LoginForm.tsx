@@ -71,8 +71,8 @@ export default function LoginForm() {
             register={register}
             name="email"
             type="email"
-            errors={errors}
-          />
+            errors={errors} 
+            placeholder={""}          />
 
           <div>
             <div className="flex items-center justify-between">

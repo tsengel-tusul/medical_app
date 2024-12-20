@@ -1,5 +1,5 @@
 "use client";
- 
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { HiInformationCircle } from "react-icons/hi";
@@ -8,12 +8,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { updateUserById } from "@/actions/user";
-import { Button } from "@/components/ui/button";
+// import { updateUserById } from "@/actions/users";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,22 +23,27 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
- 
+import { updateUserById } from "@/actions/user";
+import SubmitButton from "../FormInputs/SubmitButton";
+import { UserRole } from "@prisma/client";
+
 const FormSchema = z.object({
   token: z.string().min(6, {
-    message: "Your one-time password must be 6 characters.",
+    message: "Your Token must be 6 characters.",
   }),
 });
- 
+
 export default function VerifyTokenForm({
   userToken,
   id,
+  role,
 }: {
   userToken: number | undefined;
   id: string;
+  role: UserRole | undefined;
 }) {
-  const [/*loading*/, setLoading] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -48,7 +51,7 @@ export default function VerifyTokenForm({
       token: "",
     },
   });
- 
+
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setLoading(true);
     const userInputToken = parseInt(data.token);
@@ -60,7 +63,12 @@ export default function VerifyTokenForm({
         setLoading(false);
         // reset();
         toast.success("Account Verified");
-        router.push("/login");
+        if (role === "DOCTOR") {
+          router.push(`/login?returnUrl=/onboarding`);
+        } else {
+          router.push("/login");
+        }
+        //OnBoarding Page
       } catch (error) {
         setLoading(false);
         console.log(error);
@@ -71,22 +79,22 @@ export default function VerifyTokenForm({
     }
     console.log(userInputToken);
   }
- 
+
   return (
     <Form {...form}>
+      {showNotification && (
+        <Alert color="failure" icon={HiInformationCircle}>
+          <span className="font-medium">Буруу токен!</span> Токеныг шалгаад дахин оруулна уу
+        </Alert>
+      )}
+
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        {showNotification && (
-          <Alert color="failure" icon={HiInformationCircle}>
-            <span className="font-medium">Wrong Token!</span> Please Check the
-            token and Enter again
-          </Alert>
-        )}
         <FormField
           control={form.control}
           name="token"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Enter Token Here</FormLabel>
+              <FormLabel>Токеныг энд оруулна уу</FormLabel>
               <FormControl>
                 <InputOTP maxLength={6} {...field}>
                   <InputOTPGroup>
@@ -102,15 +110,19 @@ export default function VerifyTokenForm({
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>
-              <FormDescription>
+              {/* <FormDescription>
                 Please enter the 6-figure pass code sent to your email.
-              </FormDescription>
+              </FormDescription> */}
               <FormMessage />
             </FormItem>
           )}
         />
- 
-        <Button type="submit">Submit</Button>
+
+        <SubmitButton
+          title="Submit to Verify"
+          isLoading={loading}
+          loadingTitle="Verifying please wait..."
+        />
       </form>
     </Form>
   );

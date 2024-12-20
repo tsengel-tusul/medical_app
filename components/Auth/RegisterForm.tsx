@@ -30,8 +30,7 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
         setIsLoading(false);
         toast.success("User Created successfully");
         console.log(user.data);
-
-      }else{
+      } else {
         console.log(user.error);
         toast.success("User Created Unsuccessfully");
         reset();
@@ -45,7 +44,6 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-       
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
           Create new account
         </h2>
@@ -58,6 +56,7 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
             register={register}
             name="fullName"
             errors={errors}
+            placeholder={""}
           />
 
           <TextInput
@@ -66,6 +65,7 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
             name="email"
             type="email"
             errors={errors}
+            placeholder={""}
           />
           <TextInput
             label="Phone number"
@@ -73,6 +73,7 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
             name="phone"
             type="tel"
             errors={errors}
+            placeholder={""}
           />
           <TextInput
             label="Password"
@@ -80,6 +81,7 @@ export default function RegisterForm({ role = "USER" }: { role?: UserRole }) {
             name="password"
             type="password"
             errors={errors}
+            placeholder={""}
           />
           <div>
             <SubmitButton
