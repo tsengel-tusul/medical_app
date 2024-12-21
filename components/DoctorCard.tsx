@@ -40,7 +40,7 @@ export default function DoctorCard({
   ];
 
   return (
-    <div className="border border-gray-200 bg-white inline-flex flex-col  py-6 px-3 rounded-md hover:border-gray-400 duration-300 transition-all">
+    <div className="border border-gray-200  dark:border-gray-600 bg-white dark:bg-slate-800 inline-flex flex-col  py-6 px-3 rounded-md hover:border-gray-400 duration-300 transition-all">
       <Link href="/doctors/slug">
         <h2 className="uppercase font-bold text-2xl tracking-widest">
           Batjargal, Battsengel
@@ -66,13 +66,13 @@ export default function DoctorCard({
               <Stethoscope />
               <span>Family Medicine</span>
             </p>
-            <p className="bg-green-200 py-3 px-6 uppercase">Available today</p>
+            <p className="bg-green-200 py-3 px-6 uppercase dark:text-slate-900">Available today</p>
           </div>
         </div>
       </Link>
-      <div className="pt-6 border-t border-gray-400">
+      <div className="pt-6 border-t border-gray-600">
         <h3 className="flex gap-4 justify-between items-center">
-          <span className="text-gray-600">Tue, Mar 12</span>
+          <span className="text-gray-600 dark:text-gray-400">Tue, Mar 12</span>
           <span className="font-bold">$137</span>
         </h3>
         <div className="py-3 grid grid-cols-3 gap-2">

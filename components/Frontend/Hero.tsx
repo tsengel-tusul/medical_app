@@ -7,7 +7,7 @@ import { CommandMenu } from "../command-menu";
 
 const Hero = () => {
   return (
-    <div className="bg-blue-950">
+    <div className="bg-blue-950 dark:bg-slate-950">
       <div className="relative  pb-[110px] pt-[50px] dark:bg-dark lg:pt-[50px] max-w-6xl mx-auto xl:text-2xl">
         <div className="container">
           <div className="-mx-4 flex flex-wrap">
@@ -26,7 +26,7 @@ const Hero = () => {
                   үзүүлэх болно.
                 </p>
                 {/* SEARCH BAR HERE*/}
-                <div className="w-full flex-1  md:flex-none">
+                <div className="w-full flex-1  md:flex-none ">
                   <CommandMenu />
                 </div>
                 {/* CTA BTNS*/}

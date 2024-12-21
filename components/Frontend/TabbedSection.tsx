@@ -16,7 +16,7 @@ const TabbedSection = async () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-5xl text-center lg:mb-20">
-              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px] scroll-m-20 pb-2 tracking-tight first:mt-0">
+              <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px] scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0">
               Эмч нараа хай.
               </h2>
               <p className="leading-7 [&:not(:first-child)]:mt-6text-base text-body-color dark:text-dark-6">
